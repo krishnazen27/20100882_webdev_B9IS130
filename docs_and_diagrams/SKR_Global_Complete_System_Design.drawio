@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-11-24T22:56:00.000Z" agent="5.0" version="24.7.17" type="device">
+  <diagram id="skr-detailed-sys-design" name="SKR-Global Detailed System Design">
+    <mxGraphModel dx="1600" dy="950" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1680" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- HEADER BANNER -->
+        <mxCell id="banner" value="SKR-Global Marine Logistics Import &amp; Export Management System (MLIEMS) — Complete Component-Level System Design" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F2942;strokeColor=#0284C7;fontColor=#FFFFFF;fontSize=17;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="20" width="1620" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== COLUMN 1: REACT 18 FRONTEND (VERCEL) ==================== -->
+        <mxCell id="col-fe" value="CLIENT TIER: React 18 + Vite SPA (Hosted on Vercel Edge)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0F2942;fontStyle=1;fontSize=13;startSize=35;" vertex="1" parent="1">
+          <mxGeometry x="30" y="95" width="440" height="960" as="geometry"/>
+        </mxCell>
+
+        <!-- Entry & Routing -->
+        <mxCell id="fe-entry" value="&lt;b&gt;main.jsx &amp; App.jsx (Router)&lt;/b&gt;&lt;br&gt;BrowserRouter • Public /login&lt;br&gt;ProtectedRoute(allowedRoles) Guards" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0284C7;fontSize=11;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="50" width="400" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- State & Shared Components -->
+        <mxCell id="fe-context" value="&lt;b&gt;AuthContext.jsx&lt;/b&gt;&lt;br&gt;user, loading, login(),&lt;br&gt;register(), logout(), JWT Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=11;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="145" width="190" height="85" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fe-navbar" value="&lt;b&gt;Navbar.jsx&lt;/b&gt;&lt;br&gt;SKR-Global Brand Header&lt;br&gt;Role-Filtered Console Tabs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=11;" vertex="1" parent="col-fe">
+          <mxGeometry x="230" y="145" width="190" height="85" as="geometry"/>
+        </mxCell>
+
+        <!-- Pages -->
+        <mxCell id="fe-login" value="&lt;b&gt;LoginPage.jsx&lt;/b&gt;&lt;br&gt;Sign-In &amp; Self-Registration Form&lt;br&gt;Role-Based Post-Login Redirect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0284C7;fontSize=11;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="250" width="400" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fe-dash" value="&lt;b&gt;DashboardPage.jsx (Shipments Console)&lt;/b&gt;&lt;br&gt;• Operator / Admin / Client Views&lt;br&gt;• Status Filter Dropdown &amp; Manifest Table&lt;br&gt;• Clickable Status Badge -&gt; Customs Reason Modal&lt;br&gt;• Port Weather Telemetry Banner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0284C7;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="345" width="400" height="125" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fe-modal" value="&lt;b&gt;ShipmentFormModal.jsx&lt;/b&gt;&lt;br&gt;Book Import/Export BoL, UN/LOCODE Ports,&lt;br&gt;HS Code &amp; ISO 6346 Container Form" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontSize=11;" vertex="1" parent="col-fe">
+          <mxGeometry x="45" y="490" width="350" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fe-customs" value="&lt;b&gt;CustomsPage.jsx (Customs Console)&lt;/b&gt;&lt;br&gt;• Customs Officer &amp; Admin Only&lt;br&gt;• Clearance Status Filter (PENDING/REVIEW/APPROVED/REJECTED)&lt;br&gt;• Clickable BoL Link -&gt; BoL Inspection &amp; Review Modal&lt;br&gt;• Officer Reason Input &amp; Physical Scan Checkbox" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D97706;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="585" width="400" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- API Client & Hosting Config -->
+        <mxCell id="fe-axios" value="&lt;b&gt;api/client.js (Axios Instance)&lt;/b&gt;&lt;br&gt;BaseURL: VITE_API_URL&lt;br&gt;Request Interceptor: Injects Bearer &amp;lt;JWT&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F2942;strokeColor=#0284C7;fontColor=#FFFFFF;fontSize=11;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="740" width="400" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fe-config" value="&lt;b&gt;styles.css &amp; vercel.json&lt;/b&gt;&lt;br&gt;WCAG 2.1 AA Responsive Maritime Theme • SPA Rewrite Rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#64748B;fontColor=#0F2942;fontSize=10.5;" vertex="1" parent="col-fe">
+          <mxGeometry x="20" y="845" width="400" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- Internal FE Connectors -->
+        <mxCell id="fe-c1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;" edge="1" parent="col-fe" source="fe-dash" target="fe-modal">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== COLUMN 2: EXPRESS.JS REST API (RENDER) ==================== -->
+        <mxCell id="col-be" value="APPLICATION TIER: Node.js + Express REST API (Hosted on Render)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#0F2942;fontColor=#0F2942;fontStyle=1;fontSize=13;startSize=35;" vertex="1" parent="1">
+          <mxGeometry x="530" y="95" width="660" height="960" as="geometry"/>
+        </mxCell>
+
+        <!-- Server Entry & Global Security -->
+        <mxCell id="be-server" value="&lt;b&gt;server.js &amp; config/db.js&lt;/b&gt;&lt;br&gt;DNS Override (8.8.8.8 / 1.1.1.1) • dotenv • Mongoose connectDB()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#334155;fontSize=11;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="50" width="620" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-app" value="&lt;b&gt;app.js — Global Security &amp; Parsing Pipeline&lt;/b&gt;&lt;br&gt;1. helmet() HTTP Security Headers   |   2. cors() Origin Whitelist (CLIENT_ORIGIN)   |   3. express-rate-limit (150 req / 15m)&lt;br&gt;4. express.json({ limit: '10kb' })   |   5. express-mongo-sanitize (NoSQLi Strip)   |   6. morgan() Logger" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontColor=#7F1D1D;fontSize=11;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="130" width="620" height="85" as="geometry"/>
+        </mxCell>
+
+        <!-- Auth Middleware -->
+        <mxCell id="be-auth-mw" value="&lt;b&gt;middleware/auth.middleware.js&lt;/b&gt;&lt;br&gt;• protect(): Verifies JWT Signature &amp; Active User&lt;br&gt;• authorize(...roles): Enforces RBAC (admin, operator, customs, client)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#78350F;fontSize=11;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="235" width="620" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- Routes Column -->
+        <mxCell id="be-r-auth" value="&lt;b&gt;routes/auth.routes.js&lt;/b&gt;&lt;br&gt;POST /api/v1/auth/register&lt;br&gt;POST /api/v1/auth/login&lt;br&gt;GET /api/v1/auth/me" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F2942;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="335" width="190" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-r-ship" value="&lt;b&gt;routes/shipment.routes.js&lt;/b&gt;&lt;br&gt;GET /api/v1/shipments&lt;br&gt;POST /api/v1/shipments&lt;br&gt;GET/PUT/DELETE /:id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F2942;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="460" width="190" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-r-cust" value="&lt;b&gt;routes/customs.routes.js&lt;/b&gt;&lt;br&gt;GET /api/v1/customs&lt;br&gt;POST /api/v1/customs&lt;br&gt;PATCH /:id/review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F2942;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="585" width="190" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- Controllers Column -->
+        <mxCell id="be-c-auth" value="&lt;b&gt;controllers/auth.controller.js&lt;/b&gt;&lt;br&gt;• express-validator Input Check&lt;br&gt;• Prevents Admin Self-Signup&lt;br&gt;• Signs JWT (8h Expiry)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0284C7;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="235" y="335" width="205" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-c-ship" value="&lt;b&gt;controllers/shipment.controller.js&lt;/b&gt;&lt;br&gt;• Client Owner Scoping (client: user._id)&lt;br&gt;• Enriches Shipments with Customs Notes&lt;br&gt;• Calls Port Weather Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0284C7;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="235" y="460" width="205" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-c-cust" value="&lt;b&gt;controllers/customs.controller.js&lt;/b&gt;&lt;br&gt;• Populates Full BoL Shipment Data&lt;br&gt;• Saves Officer Decision &amp; Reason&lt;br&gt;• Syncs Parent Shipment Status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0284C7;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="235" y="585" width="205" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- Models & Services Column -->
+        <mxCell id="be-m-user" value="&lt;b&gt;models/User.model.js&lt;/b&gt;&lt;br&gt;bcrypt Pre-Save Hook (12 Rounds)&lt;br&gt;select: false on password" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="460" y="335" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-m-ship" value="&lt;b&gt;models/Shipment.model.js&lt;/b&gt;&lt;br&gt;Embedded ISO 6346 Containers&lt;br&gt;Index: (status, portOfDischarge)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="460" y="430" width="180" height="85" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-m-cust" value="&lt;b&gt;models/CustomsDeclaration.js&lt;/b&gt;&lt;br&gt;HS Tariff, Duty, VAT, Status,&lt;br&gt;officerNotes, reviewedBy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="460" y="530" width="180" height="85" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-svc-weather" value="&lt;b&gt;services/portWeather.service.js&lt;/b&gt;&lt;br&gt;UN/LOCODE -&gt; Lat/Lon Lookup&lt;br&gt;Knots Conversion &amp; Fallback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="460" y="630" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Error Middleware & Seed -->
+        <mxCell id="be-err" value="&lt;b&gt;middleware/error.middleware.js&lt;/b&gt;&lt;br&gt;Centralised HTTP Status Mapper: CastError (400), Duplicate Key 11000 (409), ValidationError (400), Server Error (500)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontColor=#7F1D1D;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="735" width="620" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="be-seed" value="&lt;b&gt;seed.js &amp; /api/v1/health&lt;/b&gt;&lt;br&gt;Populates 4 SKR-Global RBAC Users, 50 Shipments &amp; 50 Customs Declarations • Uptime Health Check Endpoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#475569;fontSize=10.5;" vertex="1" parent="col-be">
+          <mxGeometry x="20" y="835" width="620" height="85" as="geometry"/>
+        </mxCell>
+
+        <!-- Internal BE Connectors -->
+        <mxCell id="be-link1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0F2942;" edge="1" parent="col-be" source="be-r-auth" target="be-c-auth">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="be-link2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0F2942;" edge="1" parent="col-be" source="be-r-ship" target="be-c-ship">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="be-link3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0F2942;" edge="1" parent="col-be" source="be-r-cust" target="be-c-cust">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="be-link4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#16A34A;" edge="1" parent="col-be" source="be-c-auth" target="be-m-user">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="be-link5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#16A34A;" edge="1" parent="col-be" source="be-c-ship" target="be-m-ship">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="be-link6" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#16A34A;" edge="1" parent="col-be" source="be-c-cust" target="be-m-cust">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="be-link7" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;" edge="1" parent="col-be" source="be-c-ship" target="be-svc-weather">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== COLUMN 3: DATA & EXTERNAL SERVICES ==================== -->
+        <mxCell id="col-data" value="DATA &amp; EXTERNAL SERVICES TIER" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#16A34A;fontColor=#0F2942;fontStyle=1;fontSize=13;startSize=35;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="95" width="400" height="960" as="geometry"/>
+        </mxCell>
+
+        <!-- MongoDB Atlas -->
+        <mxCell id="db-cluster" value="&lt;b&gt;MongoDB Atlas M0 Cluster&lt;/b&gt;&lt;br&gt;(AWS eu-west-1 Ireland • TLS Encrypted)&lt;br&gt;Database: &lt;i&gt;marine_logistics&lt;/i&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#14532D;fontSize=12;" vertex="1" parent="col-data">
+          <mxGeometry x="45" y="55" width="310" height="125" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="col-users" value="&lt;b&gt;Collection: users&lt;/b&gt;&lt;br&gt;_id, fullName, email (unique), password (hash),&lt;br&gt;role (admin|operator|customs|client), companyName" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#16A34A;fontSize=10.5;" vertex="1" parent="col-data">
+          <mxGeometry x="30" y="210" width="340" height="85" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="col-shipments" value="&lt;b&gt;Collection: shipments&lt;/b&gt;&lt;br&gt;_id, billOfLading (unique), shipmentType, vesselName,&lt;br&gt;portOfLoading, portOfDischarge, etd, eta, hsCode,&lt;br&gt;containers: [{ containerNumber, sizeType, sealNumber }],&lt;br&gt;status, client (ObjectId), createdBy (ObjectId)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#16A34A;fontSize=10.5;" vertex="1" parent="col-data">
+          <mxGeometry x="30" y="315" width="340" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="col-customs" value="&lt;b&gt;Collection: customsdeclarations&lt;/b&gt;&lt;br&gt;_id, declarationNumber (unique), shipment (Ref),&lt;br&gt;tariffClassification, dutyAssessedUSD, vatAssessedUSD,&lt;br&gt;clearanceStatus, officerNotes, reviewedBy (Ref)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#16A34A;fontSize=10.5;" vertex="1" parent="col-data">
+          <mxGeometry x="30" y="455" width="340" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- External OpenWeatherMap -->
+        <mxCell id="ext-owm" value="&lt;b&gt;OpenWeatherMap REST API&lt;/b&gt;&lt;br&gt;GET api.openweathermap.org/data/2.5/weather&lt;br&gt;Returns Wind Speed, Temp &amp; Berthing Risk" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontColor=#0F2942;fontSize=11;" vertex="1" parent="col-data">
+          <mxGeometry x="30" y="595" width="340" height="145" as="geometry"/>
+        </mxCell>
+
+        <!-- GitHub CI/CD -->
+        <mxCell id="ext-github" value="&lt;b&gt;GitHub Repository &amp; CI/CD Pipelines&lt;/b&gt;&lt;br&gt;• Push to main triggers Vercel Frontend Build&lt;br&gt;• Push to main triggers Render Backend Deploy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F2942;strokeColor=#0284C7;fontColor=#FFFFFF;fontSize=11;" vertex="1" parent="col-data">
+          <mxGeometry x="30" y="775" width="340" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== CROSS-TIER ARROWS ==================== -->
+        <mxCell id="cross-1" value="HTTPS JSON + Bearer JWT" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0F2942;strokeWidth=2.5;fontSize=11;fontStyle=1;" edge="1" parent="1" source="fe-axios" target="be-app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cross-2" value="Mongoose TLS" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#16A34A;strokeWidth=2;fontSize=10.5;fontStyle=1;" edge="1" parent="1" source="be-m-user" target="col-users">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cross-3" value="Mongoose TLS" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#16A34A;strokeWidth=2;fontSize=10.5;fontStyle=1;" edge="1" parent="1" source="be-m-ship" target="col-shipments">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cross-4" value="Mongoose TLS" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#16A34A;strokeWidth=2;fontSize=10.5;fontStyle=1;" edge="1" parent="1" source="be-m-cust" target="col-customs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cross-5" value="HTTPS GET" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0284C7;strokeWidth=2;dashed=1;fontSize=10.5;fontStyle=1;" edge="1" parent="1" source="be-svc-weather" target="ext-owm">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
