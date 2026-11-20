@@ -1,0 +1,35 @@
+SKR-GLOBAL MARINE LOGISTICS SYSTEM (MLIEMS) — PRESENTATION SPEAKER NOTES (10-15 MINUTES)
+Presenter: Krishna Rao Seelam | Module: B9IS130 Web Development for Information Systems
+
+SLIDE 1 — TITLE SLIDE:
+Good morning/afternoon everyone. My name is Krishna Rao Seelam, and today I am presenting the SKR-Global Marine Logistics Import and Export Management System (MLIEMS), built for B9IS130 Web Development for Information Systems.
+
+SLIDE 2 — PROBLEM DOMAIN:
+Over 80% of global merchandise trade moves by sea, yet small and mid-sized freight forwarders still coordinate shipments using disconnected spreadsheets and emailed Bills of Lading. When customs officers and freight operators work in separate silos, a single tariff discrepancy causes expensive port demurrage delays.
+
+SLIDE 3 — OPERATIONAL TRANSFORMATION:
+SKR-Global replaces manual re-keying with centralised ISO-validated manifests, real-time customs sync, and strict role-based access control across all stakeholders.
+
+SLIDE 4 — STAKEHOLDERS & RBAC:
+The platform enforces strict separation of duties across four distinct roles: Logistics Operators who book manifests, Customs Officers who audit declarations, Clients who view only their own cargo, and Administrators who oversee system governance.
+
+SLIDE 5 & 6 — SYSTEM ARCHITECTURE & MERN STACK:
+I selected the MERN stack to maintain a single JavaScript and JSON data model end-to-end. MongoDB Atlas is particularly well suited here because a single Bill of Lading can carry a variable number of containers—embedding container sub-documents directly inside each Shipment avoids expensive SQL joins while enforcing ISO 6346 regex validation via Mongoose.
+
+SLIDE 7 — DATA FLOW & EXTERNAL API:
+Here is how a consignment flows through the system: an Operator creates a Bill of Lading, queries live destination port wind conditions via the OpenWeatherMap API, and a Customs Officer reviews that exact BoL—automatically syncing the parent shipment status upon approval or hold.
+
+SLIDE 8 — OWASP TOP 10 SECURITY:
+Hiding buttons on the front end isn't security—every API route validates a signed JWT, verifies user roles server-side, strips NoSQL injection operators using express-mongo-sanitize, hashes passwords with 12 rounds of bcrypt, and enforces rate limiting.
+
+SLIDE 9 — LIVE DEMO WALKTHROUGH:
+1. Sign in as Operator (operator@skr-global.com / Password123!): Show Customs tab is hidden, book a shipment, and click Port Weather.
+2. Sign in as Customs Officer (customs@skr-global.com / Password123!): Show Shipments tab is hidden, filter declarations, click a Bill of Lading (BoL) link to inspect cargo details, set status to REJECTED with a reason, and save.
+3. Verify Sync as Operator: Log back in as Operator and click the CUSTOMS HOLD status badge to read the customs officer's reason.
+4. Sign in as Client (client@skr-global.com / Password123!): Show read-only view scoped strictly to assigned shipments.
+
+SLIDE 10 — CLOUD DEPLOYMENT:
+Everything demonstrated is hosted live in the cloud: React on Vercel with SPA rewrite routing, Express on Render with encrypted environment variables, and MongoDB Atlas hosted in AWS Ireland.
+
+SLIDE 11 & 12 — REFLECTION & Q&A:
+A key technical lesson during development was diagnosing an ISP IPv6 DNS issue that blocked MongoDB SRV lookups, resolved via explicit public DNS resolvers in Node.js. Thank you for your time—I am happy to take any questions.
