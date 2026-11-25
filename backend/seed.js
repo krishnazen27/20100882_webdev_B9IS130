@@ -173,13 +173,11 @@ const seedDatabase = async () => {
     const createdDeclarations = await CustomsDeclaration.insertMany(declarationsToInsert);
     console.log(`[Seed] Inserted ${createdDeclarations.length} customs declarations.`);
 
-    console.log('
---- SKR-Global Seed Complete! Demo Logins (Password: Password123!) ---');
+    console.log('--- SKR-Global Seed Complete! Demo Logins (Password: Password123!) ---');
     console.log('Admin:    admin@skr-global.com');
     console.log('Operator: operator@skr-global.com');
     console.log('Customs:  customs@skr-global.com');
-    console.log('Client:   client@skr-global.com
-');
+    console.log('Client:   client@skr-global.com');
 
     process.exit(0);
   } catch (error) {
